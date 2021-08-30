@@ -19,4 +19,13 @@ class UnitCustomerResource(Resource):
 
     @get_data_summary()
     def get(self, customer_id):
-        pass
+        """Get unit customer data"""
+
+        if customer_id not in list(g.customers.keys()):
+            return {
+                "message": "Customer ID does not exist"
+            }, 400
+
+        return {
+            "customer": g.customers[customer_id]
+        }
