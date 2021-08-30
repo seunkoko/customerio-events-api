@@ -18,6 +18,8 @@ class CustomersResource(Resource):
 
     @get_data_summary()
     def get(self):
+        """Get all customer data summary"""
+
         page = request.args.get('page', 1, type=int) # active page, pagination
         per_page = request.args.get('per_page', 10, type=int) # data per page, pagination
 
@@ -38,3 +40,36 @@ class CustomersResource(Resource):
                 "total": len(all_customers)
             }
         }, 200
+
+    @validate_request()
+    @get_data_summary()
+    def post(self):
+        """Create new customer data"""
+
+        # get customer data from request body
+        _data = request.get_json()
+
+        # check that customer does not exist
+        if 'customer' in _data and 'id' in _data['customer'] and \
+        str(_data['customer']['id']) in list(g.customers.keys()):
+            return {
+                "message": "Customer ID already exists"
+            }, 400
+
+        # create new customer data
+        new_customer = {
+            **_data['customer'],
+            'events': {},
+            'last_updated': round(time.time())
+        }
+
+        # add new customer data
+        g.customers[_data['customer']['id']] = new_customer
+
+        # update file
+        write_to_file(g.customers)
+
+        # return new customer
+        return {
+            "customer": new_customer
+        }, 201
