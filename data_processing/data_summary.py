@@ -2,7 +2,7 @@ import json
 import time
 
 
-def file_summary(filename):
+def file_summary(filename, test=False):
     """Summarizes Customerio event data file
     Args
         expected_args(string): filename
@@ -65,7 +65,8 @@ def file_summary(filename):
     end = time.time() # end of function time
 
     # write processed data in file
-    f = open("data/summary.data", "w")
+    summary_path = "tests/default_test_data/summary.data" if test else "data/summary.data"
+    f = open(summary_path, "w")
     f.write(json.dumps(processed_data))
     f.close()
 

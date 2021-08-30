@@ -19,8 +19,16 @@ class DevelopmentConfiguration(Config):
     SQLALCHEMY_TRACK_MODIFICATIONS = True
     SQLALCHEMY_DATABASE_URI = os.getenv('DATABASE_URI')
 
+class TestingConfiguration(Config):
+    """ Testing Configuration """
+    DEBUG = True
+    SQLALCHEMY_TRACK_MODIFICATIONS = True
+    TESTING = True
+    SQLALCHEMY_DATABASE_URI  = os.getenv('DATABASE_URI_TEST')
+
 
 app_configuration = {
     'production': Config,
-    'development': DevelopmentConfiguration
+    'development': DevelopmentConfiguration,
+    'testing': TestingConfiguration
 }
