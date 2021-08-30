@@ -2,10 +2,10 @@ from flask_restful import Api
 
 # import controllers
 from ..controllers import (
-    SampleResource
+    CustomersResource
 )
 
 api = Api()
 
 # add routes
-api.add_resource(SampleResource, '/sample', '/sample/')
+api.add_resource(CustomersResource, '/customers', '/customers/')

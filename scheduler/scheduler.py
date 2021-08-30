@@ -27,6 +27,7 @@ sched.configure(executors=executors, job_defaults=job_defaults, timezone=utc)
 
 @sched.scheduled_job('cron', id='process_data_summary')
 def process_data_summary_schedule():
+    """ Job to summarize data """
     with app.app_context():
         print('\n\nrunning cron job')
         file_summary('data/messages.2.data')

@@ -1,1 +1,1 @@
-from .SampleResource import SampleResource
+from .customers import CustomersResource
