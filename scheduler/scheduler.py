@@ -30,7 +30,7 @@ def process_data_summary_schedule():
     """ Job to summarize data """
     with app.app_context():
         print('\n\nrunning cron job')
-        file_summary('data/messages.2.data')
+        file_summary('data/messages.1.data')
         print('finished cron job\n\n')
 
     sched.shutdown(wait=False)
