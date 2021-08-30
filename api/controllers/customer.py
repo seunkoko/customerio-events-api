@@ -21,11 +21,14 @@ class UnitCustomerResource(Resource):
     def get(self, customer_id):
         """Get unit customer data"""
 
+        # check if customer exists
         if customer_id not in list(g.customers.keys()):
+            # returns error message if customer does not exist
             return {
                 "message": "Customer ID does not exist"
             }, 400
 
+        # returns customer
         return {
             "customer": g.customers[customer_id]
-        }
+        }, 200
