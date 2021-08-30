@@ -3,7 +3,7 @@
 API for Customerio Events Data Summary. Find out more info [here]().
 
 Frontend APP hosted on netlify [here]()
-Backend API hosted on heroku [here]()
+Backend API hosted on heroku [here](https://customerio-events-api.herokuapp.com/)
 
 ### Features
 ---
@@ -17,7 +17,7 @@ Backend API hosted on heroku [here]()
 ### Endpoints
 ---
 
-This is the [link]() in which to access the api. 
+This is the [link](https://customerio-events-api.herokuapp.com/) in which to access the api. 
 
 Below are the collection of routes.
 
