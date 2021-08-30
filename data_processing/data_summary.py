@@ -75,11 +75,24 @@ def file_summary(filename):
 
 
 def customer_summary(data):
+    """Creates an initial summary for a user
+    Args
+        expected_args(dict): data
+    Returns
+        dict
+    """
     return {
         "id": data['user_id']
     }
 
 def customer_summary_attribute(summarized_data, new_data):
+    """Creates an initial attribute summary for a user
+    Args
+        expected_args(dict): summarized_data 
+        expected_args(dict): new_data 
+    Returns
+        dict
+    """
     return {
         **summarized_data,
         "attributes": new_data["data"],
@@ -87,6 +100,13 @@ def customer_summary_attribute(summarized_data, new_data):
     }
 
 def customer_summary_event(summarized_data, new_data):
+    """Creates an initial event summary for a user
+    Args
+        expected_args(dict): summarized_data 
+        expected_args(dict): new_data 
+    Returns
+        dict
+    """
     return {
         **summarized_data,
         "events": {
@@ -95,6 +115,13 @@ def customer_summary_event(summarized_data, new_data):
     }
 
 def update_customer_attribute(old_data, new_data):
+    """Updates attribute summary for a user
+    Args
+        expected_args(dict): old_data 
+        expected_args(dict): new_data 
+    Returns
+        dict: updated data
+    """
     return {
         **old_data, 
         "attributes": {
@@ -105,6 +132,13 @@ def update_customer_attribute(old_data, new_data):
     }
 
 def update_customer_event(old_data, new_data):
+    """Updates event summary for a user
+    Args
+        expected_args(dict): old_data 
+        expected_args(dict): new_data 
+    Returns
+        dict: updated data
+    """
     return {
         **old_data, 
         "events": {
