@@ -95,5 +95,5 @@ class UnitCustomerResource(Resource):
 
         # return success message
         return {
-            "message": "Customer info deleted successfully"
+            "message": "Customer summary deleted successfully"
         }, 201

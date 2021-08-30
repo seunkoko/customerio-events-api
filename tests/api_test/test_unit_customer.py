@@ -116,3 +116,33 @@ class UpdateCustomersTestCase(BaseTestCase):
         self.assert200(response)
 
 
+class DeleteCustomersTestCase(BaseTestCase):
+    """ Delete Unit Customer Route """
+
+    def setUp(self):
+        self.create_default_data() # process default data
+
+    def test_delete_customer_does_not_exist(self):
+        """ Test delete unit customer
+        DELETE /customer/customer_id
+        """
+        response = self.client.delete('customers/200000000',
+            content_type='application/json'
+        )
+        response_data = json.loads(response.data)
+
+        self.assertEqual(response_data['message'], 'Customer ID does not exist')
+        self.assert400(response)
+
+    def test_delete_customer_success(self):
+        """ Test delete unit customer success
+        DELETE /customer/customer_id
+        """
+        response = self.client.delete('customers/1',
+            content_type='application/json'
+        )
+        response_data = json.loads(response.data)
+
+        self.assertEqual(response_data['message'], 'Customer summary deleted successfully')
+        self.assertEqual(response.status_code, 201)
+
