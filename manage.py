@@ -8,8 +8,10 @@ from sqlalchemy.exc import SQLAlchemyError
 
 try:
     from server import create_flask_app
+    from data_processing import file_summary
 except ImportError:
     from .server import create_flask_app
+    from .data_processing import file_summary
 
 environment = os.getenv("FLASK_CONFIG")
 app = create_flask_app(environment)
@@ -28,16 +30,19 @@ manager.add_command("runserver", server)
 
 
 @manager.command
-def seed_sample_function(prompt=True):
+def script_cleanup_data(prompt=True):
+    """Script to summarizes Customerio event data file
+    """
     if environment == "production":
         print("\n\n\tNot happening! Aborting...\n\n Aborted\n\n")
         return
 
     if environment in ["testing", "development"]:
         try:
-            message = "Error seeding to the database"
+            file_summary('data/messages.1.data') # summarize the data/messages.1.data file
+            message = "\n\n\tSuccess in cleanup\n\n\n"
         except SQLAlchemyError as error:
-            message = "\n\n\tThe error below occured when trying to seed the database\n\n\n" + str(error) + "\n\n"
+            message = "\n\n\tThe error below occured when trying to summarize data file\n\n\n" + str(error) + "\n\n"
 
         print(message)
     else:
