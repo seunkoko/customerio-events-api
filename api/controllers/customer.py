@@ -56,6 +56,11 @@ class UnitCustomerResource(Resource):
                 "message": "Customer email, id or created_at fields cannot be updated."
             }, 400
 
+        # check for attributes to remove
+        if 'remove_attributes' in _data['customer'] and _data['customer']['remove_attributes']:
+            for attributeKey in _data['customer']['remove_attributes']:
+                del g.customers[customer_id]['attributes'][attributeKey]
+
         # prepare updated customer data
         updated_customer = {
             **current_customer_details,
