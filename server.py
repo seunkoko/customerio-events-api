@@ -70,10 +70,11 @@ def create_flask_app(environment):
 app = create_flask_app(os.getenv('FLASK_CONFIG'))
 
 if __name__ == "__main__":
-    from scheduler import sched
-
-    # Testing
-    sched.add_jobstore(SQLAlchemyJobStore(url=os.getenv('JOB_STORE')), 'default')
-    sched.start()
+    # Summarize data
+    if os.getenv('FLASK_CONFIG') != 'testing':
+        from scheduler import sched
+        
+        sched.add_jobstore(SQLAlchemyJobStore(url=os.getenv('JOB_STORE')), 'default')
+        sched.start()
 
     app.run(host='0.0.0.0', port=os.getenv('PORT'))
