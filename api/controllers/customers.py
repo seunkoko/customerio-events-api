@@ -18,4 +18,23 @@ class CustomersResource(Resource):
 
     @get_data_summary()
     def get(self):
-        pass
+        page = request.args.get('page', 1, type=int) # active page, pagination
+        per_page = request.args.get('per_page', 10, type=int) # data per page, pagination
+
+        # get all customers
+        all_customers = list(g.customers.values())
+
+        # paginate data
+        paginated_data = [
+            all_customers[i:i+per_page] for i in range(0, len(all_customers), per_page)
+        ]
+
+        # return all customer with pagination meta-data
+        return {
+            "customers": paginated_data[page-1],
+            "meta": {
+                "page": page,
+                "per_page": per_page,
+                "total": len(all_customers)
+            }
+        }, 200
