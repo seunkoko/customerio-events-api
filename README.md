@@ -1,8 +1,8 @@
 # Customerio Events API
 
-API for Customerio Events Data Summary. Find out more info [here]().
+API for Customerio Events Data Summary. Find out more info [here](https://github.com/seunkoko/customerio-events-app).
 
-Frontend APP hosted on netlify [here]()
+Frontend APP hosted on netlify [here](https://customerio-events.netlify.app)
 Backend API hosted on heroku [here](https://customerio-events-api.herokuapp.com/)
 
 ### Features
@@ -50,7 +50,7 @@ DELETE /customers/customer_id  | Delete user attribute |
 - Activate your vitual environment.
 - Install all necessary packages in the requirements.txt file. You can use the command `pip3 install -r requirements.txt`.
 - Set up your environment variable. Checkout `.env.sample`  in the root folder to do this.
-- Export your FLASK_APP `server.py`.
+- Export your FLASK_APP in the terminal by running this command `export FLASK_APP=server.py`.
 - To start your app locally, run `python3 server.py`.
 - Use Postman or any API testing tool of your choice to access the endpoints defined above.
 - To run tests, run `pytest -v`.
