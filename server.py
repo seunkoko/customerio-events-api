@@ -25,7 +25,7 @@ def create_flask_app(environment):
     app = Flask(__name__, instance_relative_config=True, static_folder=None, template_folder='./api/emails/templates')
 
     # enabe CORS
-    cors = CORS(app, resources={r"/*": {"origins": "*"}})
+    cors = CORS(app)
     app.config.from_object(app_configuration[environment])
     app.config['BUNDLE_ERRORS'] = True
 
